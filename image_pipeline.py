@@ -100,19 +100,20 @@ class EdgeDetectionStep(BasePiplineStep):
 
 class GaussianBlurStep(BasePiplineStep):
     """Apply a Gaussian blur to an image given a kernel size"""
-    def __init__(self, kernel_size: int):
+    def __init__(self, kernel_height: int, kernel_width: int):
         super().__init__()
-        self.kernel_size = kernel_size
+        self.kernel_height = kernel_height 
+        self.kernel_width = kernel_width
 
     def apply(self, image: np.ndarray) -> np.ndarray:
-        return cv2.GaussianBlur(image, (self.kernel_size, self.kernel_size), 0)
+        return cv2.GaussianBlur(image, (self.kernel_height, self.kernel_width), 0)
 
 if __name__ == '__main__':
     # This runs a simple image pipeline with all the steps.
     # For tests, see test_image_pipeline.py
     pipeline = ImagePipeline(input_folder='input', output_folder='output')
     pipeline.add_step(ResizeStep(width=250, height=250))
-    pipeline.add_step(GaussianBlurStep(kernel_size=3))
+    pipeline.add_step(GaussianBlurStep(kernel_height=3, kernel_width=3))
     pipeline.add_step(EdgeDetectionStep(lower_thresh=150, upper_thresh=250))
     print(f"Running pipeline {pipeline}")
     pipeline.run(batch_size=5)

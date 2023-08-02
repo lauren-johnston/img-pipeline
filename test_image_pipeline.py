@@ -36,7 +36,7 @@ def test_gaussian_blur_step():
     """ Test that the gaussian blur step is applied. This is tested by seeing
     if a transformation occured in the output image"""
     image = cv2.imread('input/frog.jpg')
-    blur_step = GaussianBlurStep(kernel_size=3)
+    blur_step = GaussianBlurStep(kernel_height=3, kernel_width=3)
     blurred_image = blur_step.apply(image)
     # To test GaussianBlurStep, you can check that the output image is not the same as the input image
     assert not np.array_equal(blurred_image, image)
@@ -54,7 +54,7 @@ def test_image_pipeline_runs_all_steps():
     """ Test that the image pipeline runs all steps correctly"""
     pipeline = ImagePipeline(input_folder='input', output_folder='output')
     pipeline.add_step(ResizeStep(width=200, height=200))
-    pipeline.add_step(GaussianBlurStep(kernel_size=3))
+    pipeline.add_step(GaussianBlurStep(kernel_height=3, kernel_width=3))
     pipeline.add_step(EdgeDetectionStep(lower_thresh=100, upper_thresh=200))    
     image_paths = ['input/frog.jpg', 'input/zebra.jpg']
     pipeline.run(batch_size=2)
@@ -74,7 +74,7 @@ def test_steps_are_in_order():
     """ Test that the steps are in order in image pipeline"""
     pipeline = ImagePipeline(input_folder='input', output_folder='output')
     step1 = ResizeStep(width=200, height=200)
-    step2 = GaussianBlurStep(kernel_size=3)
+    step2 = GaussianBlurStep(kernel_height=3, kernel_width=3)
     pipeline.add_step(step1)
     pipeline.add_step(step2)
     assert pipeline.steps == [step1, step2]
