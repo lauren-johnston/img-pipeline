@@ -1,0 +1,8 @@
+exceptiongroup==1.1.2
+iniconfig==2.0.0
+numpy==1.25.2
+opencv-python==4.8.0.74
+packaging==23.1
+pluggy==1.2.0
+pytest==7.4.0
+tomli==2.0.1
