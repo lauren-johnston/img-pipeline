@@ -1,6 +1,4 @@
 # # Image Processing Pipeline
-# Full code link with unit tests and readme: 
-# https://github.com/lauren-johnston/img-pipeline
 #
 # ## Goal
 # Create a simple pipeline for image processing. This pipeline should be able
