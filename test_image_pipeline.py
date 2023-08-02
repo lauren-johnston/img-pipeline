@@ -69,7 +69,6 @@ def test_image_pipeline_works_single_step():
     """ Test that the image pipeline works correctly with a single step"""
     pipeline = ImagePipeline(input_folder='input', output_folder='output')
     pipeline.add_step(ResizeStep(width=200, height=200))
-    image_paths = ['input/frog.jpg']
     pipeline.run(batch_size=1)
 def test_steps_are_in_order():
     """ Test that the steps are in order in image pipeline"""
